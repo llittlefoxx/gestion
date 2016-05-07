@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Unite list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Libelle</th>
+                <th>Datefinvalidite</th>
+                <th>Idunite</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for unite in unites %}
+            <tr>
+                <td><a href="{{ path('unite_show', { 'id': unite.idunite }) }}">{{ unite.libelle }}</a></td>
+                <td>{% if unite.datefinvalidite %}{{ unite.datefinvalidite|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ unite.idunite }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('unite_show', { 'id': unite.idunite }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('unite_edit', { 'id': unite.idunite }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('unite_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

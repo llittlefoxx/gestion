@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Produitfacturefournis</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Quantitefacture</th>
+                <td>{{ produitfacturefourni.quantitefacture }}</td>
+            </tr>
+            <tr>
+                <th>Pufactureht</th>
+                <td>{{ produitfacturefourni.pufactureht }}</td>
+            </tr>
+            <tr>
+                <th>Montantremise</th>
+                <td>{{ produitfacturefourni.montantremise }}</td>
+            </tr>
+            <tr>
+                <th>Idligne</th>
+                <td>{{ produitfacturefourni.idligne }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('produitfacturefournis_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('produitfacturefournis_edit', { 'id': produitfacturefourni.idligne }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

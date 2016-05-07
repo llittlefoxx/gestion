@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Structure</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Libellestructure</th>
+                <td>{{ structure.libellestructure }}</td>
+            </tr>
+            <tr>
+                <th>Datefinvalidite</th>
+                <td>{% if structure.datefinvalidite %}{{ structure.datefinvalidite|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Idstruct</th>
+                <td>{{ structure.idstruct }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('structure_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('structure_edit', { 'id': structure.idstruct }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

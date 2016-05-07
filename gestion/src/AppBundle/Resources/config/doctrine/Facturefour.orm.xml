@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Facturefour" table="facturefour">
+    <indexes>
+      <index name="FK_association10" columns="idstruct"/>
+      <index name="FK_association11" columns="idcompte"/>
+      <index name="FK_association8" columns="idpaiement"/>
+    </indexes>
+    <id name="idfactfour" type="integer" column="idfactfour">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="numfactcni" type="integer" column="numFactCni" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="numfactfour" type="integer" column="numFactFour" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="datefour" type="datetime" column="dateFour" nullable="true"/>
+    <field name="datecni" type="datetime" column="dateCni" nullable="true"/>
+    <field name="objetfact" type="string" column="objetFact" length="254" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="idpaiement" target-entity="Modepaiement" fetch="LAZY">
+      <join-columns>
+        <join-column name="idpaiement" referenced-column-name="idpaiement"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idcompte" target-entity="Comptebancaire" fetch="LAZY">
+      <join-columns>
+        <join-column name="idcompte" referenced-column-name="idcompte"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idstruct" target-entity="Structure" fetch="LAZY">
+      <join-columns>
+        <join-column name="idstruct" referenced-column-name="idstruct"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

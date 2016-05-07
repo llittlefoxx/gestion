@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Commande list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Codetype</th>
+                <th>Observation</th>
+                <th>Datecommande</th>
+                <th>Idligne</th>
+                <th>Qte</th>
+                <th>Idlignedecmd</th>
+                <th>Quantitecommande</th>
+                <th>Quantitebci</th>
+                <th>Idcmd</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commande in commandes %}
+            <tr>
+                <td><a href="{{ path('commande_show', { 'id': commande.idcmd }) }}">{{ commande.codetype }}</a></td>
+                <td>{{ commande.observation }}</td>
+                <td>{% if commande.datecommande %}{{ commande.datecommande|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ commande.idligne }}</td>
+                <td>{{ commande.qte }}</td>
+                <td>{{ commande.idlignedecmd }}</td>
+                <td>{{ commande.quantitecommande }}</td>
+                <td>{{ commande.quantitebci }}</td>
+                <td>{{ commande.idcmd }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('commande_show', { 'id': commande.idcmd }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('commande_edit', { 'id': commande.idcmd }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('commande_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

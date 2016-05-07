@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Commande" table="commande">
+    <indexes>
+      <index name="FK_association1" columns="idunite"/>
+      <index name="FK_association2" columns="idbci"/>
+      <index name="FK_association3" columns="idprod"/>
+    </indexes>
+    <id name="idcmd" type="integer" column="idcmd">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="codetype" type="integer" column="codeType" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="observation" type="string" column="observation" length="254" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="datecommande" type="datetime" column="dateCommande" nullable="true"/>
+    <field name="idligne" type="integer" column="idligne" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="qte" type="string" column="qte" length="254" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="idlignedecmd" type="integer" column="idlignedecmd" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="quantitecommande" type="integer" column="quantiteCommande" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="quantitebci" type="integer" column="quantiteBci" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-one field="idprod" target-entity="ProduitService" fetch="LAZY">
+      <join-columns>
+        <join-column name="idprod" referenced-column-name="idprod"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idbci" target-entity="Bci" fetch="LAZY">
+      <join-columns>
+        <join-column name="idbci" referenced-column-name="idbci"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idunite" target-entity="Unite" fetch="LAZY">
+      <join-columns>
+        <join-column name="idunite" referenced-column-name="idunite"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Produitfacturefournis" table="produitfacturefournis">
+    <indexes>
+      <index name="FK_Reference_11" columns="idtax"/>
+      <index name="FK_Reference_12" columns="idprod"/>
+      <index name="FK_association5" columns="idfournisseur"/>
+    </indexes>
+    <id name="idligne" type="integer" column="idligne">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="quantitefacture" type="integer" column="quantiteFacture" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="pufactureht" type="decimal" column="puFactureHt" precision="8" scale="0" nullable="true"/>
+    <field name="montantremise" type="decimal" column="montantRemise" precision="8" scale="0" nullable="true"/>
+    <many-to-one field="idprod" target-entity="ProduitService" fetch="LAZY">
+      <join-columns>
+        <join-column name="idprod" referenced-column-name="idprod"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idtax" target-entity="Tax" fetch="LAZY">
+      <join-columns>
+        <join-column name="idtax" referenced-column-name="idtax"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idfournisseur" target-entity="Fournisseur" fetch="LAZY">
+      <join-columns>
+        <join-column name="idfournisseur" referenced-column-name="idfournisseur"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

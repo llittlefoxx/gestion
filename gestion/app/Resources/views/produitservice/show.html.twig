@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ProduitService</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Description</th>
+                <td>{{ produitService.description }}</td>
+            </tr>
+            <tr>
+                <th>Codenature</th>
+                <td>{{ produitService.codenature }}</td>
+            </tr>
+            <tr>
+                <th>Codeunite</th>
+                <td>{{ produitService.codeunite }}</td>
+            </tr>
+            <tr>
+                <th>Fournit</th>
+                <td>{% if produitService.fournit %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Idprod</th>
+                <td>{{ produitService.idprod }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('produitservice_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('produitservice_edit', { 'id': produitService.idprod }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

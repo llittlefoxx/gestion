@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Structure list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Libellestructure</th>
+                <th>Datefinvalidite</th>
+                <th>Idstruct</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for structure in structures %}
+            <tr>
+                <td><a href="{{ path('structure_show', { 'id': structure.idstruct }) }}">{{ structure.libellestructure }}</a></td>
+                <td>{% if structure.datefinvalidite %}{{ structure.datefinvalidite|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ structure.idstruct }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('structure_show', { 'id': structure.idstruct }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('structure_edit', { 'id': structure.idstruct }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('structure_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

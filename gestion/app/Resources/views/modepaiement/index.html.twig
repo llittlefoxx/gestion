@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Modepaiement list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Libelle</th>
+                <th>Idpaiement</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for modepaiement in modepaiements %}
+            <tr>
+                <td><a href="{{ path('modepaiement_show', { 'id': modepaiement.idpaiement }) }}">{{ modepaiement.libelle }}</a></td>
+                <td>{{ modepaiement.idpaiement }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('modepaiement_show', { 'id': modepaiement.idpaiement }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('modepaiement_edit', { 'id': modepaiement.idpaiement }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('modepaiement_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Comptebancaire list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Numrib</th>
+                <th>Datefinvalidite</th>
+                <th>Proprietaire</th>
+                <th>Idcompte</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for comptebancaire in comptebancaires %}
+            <tr>
+                <td><a href="{{ path('comptebancaire_show', { 'id': comptebancaire.idcompte }) }}">{{ comptebancaire.numrib }}</a></td>
+                <td>{% if comptebancaire.datefinvalidite %}{{ comptebancaire.datefinvalidite|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ comptebancaire.proprietaire }}</td>
+                <td>{{ comptebancaire.idcompte }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('comptebancaire_show', { 'id': comptebancaire.idcompte }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('comptebancaire_edit', { 'id': comptebancaire.idcompte }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('comptebancaire_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

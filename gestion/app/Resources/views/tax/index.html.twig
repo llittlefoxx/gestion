@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Tax list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Libelle</th>
+                <th>Pourcentage</th>
+                <th>Datefinvalidite</th>
+                <th>Idtax</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tax in taxes %}
+            <tr>
+                <td><a href="{{ path('tax_show', { 'id': tax.idtax }) }}">{{ tax.libelle }}</a></td>
+                <td>{{ tax.pourcentage }}</td>
+                <td>{% if tax.datefinvalidite %}{{ tax.datefinvalidite|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ tax.idtax }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('tax_show', { 'id': tax.idtax }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('tax_edit', { 'id': tax.idtax }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('tax_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Fournisseur</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Raisonsociale</th>
+                <td>{{ fournisseur.raisonsociale }}</td>
+            </tr>
+            <tr>
+                <th>Adrfour</th>
+                <td>{{ fournisseur.adrfour }}</td>
+            </tr>
+            <tr>
+                <th>Telfour</th>
+                <td>{{ fournisseur.telfour }}</td>
+            </tr>
+            <tr>
+                <th>Faxfour</th>
+                <td>{{ fournisseur.faxfour }}</td>
+            </tr>
+            <tr>
+                <th>Sitewebfour</th>
+                <td>{{ fournisseur.sitewebfour }}</td>
+            </tr>
+            <tr>
+                <th>Idfournisseur</th>
+                <td>{{ fournisseur.idfournisseur }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fournisseur_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('fournisseur_edit', { 'id': fournisseur.idfournisseur }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

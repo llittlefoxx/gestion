@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Natureproduit list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Libelle</th>
+                <th>Datefinvalidite</th>
+                <th>Idnature</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for natureproduit in natureproduits %}
+            <tr>
+                <td><a href="{{ path('natureproduit_show', { 'id': natureproduit.idnature }) }}">{{ natureproduit.libelle }}</a></td>
+                <td>{% if natureproduit.datefinvalidite %}{{ natureproduit.datefinvalidite|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ natureproduit.idnature }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('natureproduit_show', { 'id': natureproduit.idnature }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('natureproduit_edit', { 'id': natureproduit.idnature }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('natureproduit_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

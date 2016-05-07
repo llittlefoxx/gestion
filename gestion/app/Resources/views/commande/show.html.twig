@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Commande</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Codetype</th>
+                <td>{{ commande.codetype }}</td>
+            </tr>
+            <tr>
+                <th>Observation</th>
+                <td>{{ commande.observation }}</td>
+            </tr>
+            <tr>
+                <th>Datecommande</th>
+                <td>{% if commande.datecommande %}{{ commande.datecommande|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Idligne</th>
+                <td>{{ commande.idligne }}</td>
+            </tr>
+            <tr>
+                <th>Qte</th>
+                <td>{{ commande.qte }}</td>
+            </tr>
+            <tr>
+                <th>Idlignedecmd</th>
+                <td>{{ commande.idlignedecmd }}</td>
+            </tr>
+            <tr>
+                <th>Quantitecommande</th>
+                <td>{{ commande.quantitecommande }}</td>
+            </tr>
+            <tr>
+                <th>Quantitebci</th>
+                <td>{{ commande.quantitebci }}</td>
+            </tr>
+            <tr>
+                <th>Idcmd</th>
+                <td>{{ commande.idcmd }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('commande_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('commande_edit', { 'id': commande.idcmd }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

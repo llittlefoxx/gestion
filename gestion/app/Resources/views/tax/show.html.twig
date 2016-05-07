@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Tax</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Libelle</th>
+                <td>{{ tax.libelle }}</td>
+            </tr>
+            <tr>
+                <th>Pourcentage</th>
+                <td>{{ tax.pourcentage }}</td>
+            </tr>
+            <tr>
+                <th>Datefinvalidite</th>
+                <td>{% if tax.datefinvalidite %}{{ tax.datefinvalidite|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Idtax</th>
+                <td>{{ tax.idtax }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('tax_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('tax_edit', { 'id': tax.idtax }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

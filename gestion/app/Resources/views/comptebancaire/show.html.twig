@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Comptebancaire</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Numrib</th>
+                <td>{{ comptebancaire.numrib }}</td>
+            </tr>
+            <tr>
+                <th>Datefinvalidite</th>
+                <td>{% if comptebancaire.datefinvalidite %}{{ comptebancaire.datefinvalidite|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Proprietaire</th>
+                <td>{{ comptebancaire.proprietaire }}</td>
+            </tr>
+            <tr>
+                <th>Idcompte</th>
+                <td>{{ comptebancaire.idcompte }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('comptebancaire_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('comptebancaire_edit', { 'id': comptebancaire.idcompte }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

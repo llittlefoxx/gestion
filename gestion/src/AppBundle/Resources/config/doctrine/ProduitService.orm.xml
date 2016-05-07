@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\ProduitService" table="produit_service">
+    <indexes>
+      <index name="FK_Reference_13" columns="idfournisseur"/>
+      <index name="FK_association7" columns="idnature"/>
+    </indexes>
+    <id name="idprod" type="integer" column="idprod">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="description" type="string" column="description" length="254" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="codenature" type="string" column="codeNature" length="254" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="codeunite" type="string" column="codeUnite" length="254" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="fournit" type="boolean" column="Fournit" nullable="true"/>
+    <many-to-one field="idfournisseur" target-entity="Fournisseur" fetch="LAZY">
+      <join-columns>
+        <join-column name="idfournisseur" referenced-column-name="idfournisseur"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idnature" target-entity="Natureproduit" fetch="LAZY">
+      <join-columns>
+        <join-column name="idnature" referenced-column-name="idnature"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

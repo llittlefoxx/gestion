@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Facturefour list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Numfactcni</th>
+                <th>Numfactfour</th>
+                <th>Datefour</th>
+                <th>Datecni</th>
+                <th>Objetfact</th>
+                <th>Idfactfour</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for facturefour in facturefours %}
+            <tr>
+                <td><a href="{{ path('facturefour_show', { 'id': facturefour.idfactfour }) }}">{{ facturefour.numfactcni }}</a></td>
+                <td>{{ facturefour.numfactfour }}</td>
+                <td>{% if facturefour.datefour %}{{ facturefour.datefour|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if facturefour.datecni %}{{ facturefour.datecni|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ facturefour.objetfact }}</td>
+                <td>{{ facturefour.idfactfour }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('facturefour_show', { 'id': facturefour.idfactfour }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('facturefour_edit', { 'id': facturefour.idfactfour }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('facturefour_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

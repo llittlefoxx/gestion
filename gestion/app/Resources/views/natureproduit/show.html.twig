@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Natureproduit</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Libelle</th>
+                <td>{{ natureproduit.libelle }}</td>
+            </tr>
+            <tr>
+                <th>Datefinvalidite</th>
+                <td>{% if natureproduit.datefinvalidite %}{{ natureproduit.datefinvalidite|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Idnature</th>
+                <td>{{ natureproduit.idnature }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('natureproduit_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('natureproduit_edit', { 'id': natureproduit.idnature }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

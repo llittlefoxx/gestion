@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Produitfacturefournis list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Quantitefacture</th>
+                <th>Pufactureht</th>
+                <th>Montantremise</th>
+                <th>Idligne</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for produitfacturefourni in produitfacturefournis %}
+            <tr>
+                <td><a href="{{ path('produitfacturefournis_show', { 'id': produitfacturefourni.idligne }) }}">{{ produitfacturefourni.quantitefacture }}</a></td>
+                <td>{{ produitfacturefourni.pufactureht }}</td>
+                <td>{{ produitfacturefourni.montantremise }}</td>
+                <td>{{ produitfacturefourni.idligne }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('produitfacturefournis_show', { 'id': produitfacturefourni.idligne }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('produitfacturefournis_edit', { 'id': produitfacturefourni.idligne }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('produitfacturefournis_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

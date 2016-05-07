@@ -1,0 +1,75 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 7 mai 2016, 00:22:01
+    Author     : StickyBit
+*/
+
+form {
+  background: -webkit-linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
+  background: -moz-linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
+  background: linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
+  margin: auto;
+  position: relative;
+  width: 410px;
+  height: 450px;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: bold;
+  color: #09C;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #999;
+  border: inset 1px solid #333;
+  -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+input {
+  
+  width: 390px;
+  display: block;
+  border: 1px solid #999;
+  height: 25px;
+  -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+textarea#feedback {
+  width: 375px;
+  height: 150px;
+}
+button {
+  width: 100px;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  background: #09C;
+  color: #fff;
+  font-family: Tahoma, Geneva, sans-serif;
+  height: 30px;
+  border-radius: 15px;
+  border: 1p solid #999;
+}
+input.button:hover {
+  background: #fff;
+  color: #09C;
+}
+textarea:focus, input:focus {
+  border: 1px solid #09C;
+}
+#para1 {
+    text-align: center;
+    color: red;
+}
+th{
+    background-color: #585858;
+}
+td{
+    color: black;
+}

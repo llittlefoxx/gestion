@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Unite</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Libelle</th>
+                <td>{{ unite.libelle }}</td>
+            </tr>
+            <tr>
+                <th>Datefinvalidite</th>
+                <td>{% if unite.datefinvalidite %}{{ unite.datefinvalidite|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Idunite</th>
+                <td>{{ unite.idunite }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('unite_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('unite_edit', { 'id': unite.idunite }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'client.html.twig' %}
+
+{% block stylesheets %}
+    {{parent()}}
+{% endblock %}
+
+{% block body %}
+
+
+    {% block coname %}    {{parent()}}  Créer un nouveau Fournisseur {% endblock %}
+    {{parent()}}
+    {{ form_start(form) }}
+
+    <form>   
+        <div >
+            <label for="nom">Raison sociale</label>
+
+            {{ form_widget(form.raisonsociale) }}
+        </div>
+        <div >
+            <label for="description">Adresse </label>
+            
+            {{ form_widget(form.adrfour) }}
+           
+        </div>
+            
+        <div >
+            <label for="idcontact">N° Telephone</label>
+            
+            {{ form_widget(form.telfour) }}
+        </div> 
+        <div >
+            <label for="idcontact">N° Fax</label>
+            <br> 
+            {{ form_widget(form.faxfour) }}
+        </div> 
+        <div >
+            <label for="idcontact">Site web fournisseur</label>
+            <br> 
+            {{ form_widget(form.sitewebfour) }}
+        </div> 
+        <br>
+        <input type="submit" value="Créer" class="btn btn-success" />
+        <br>
+        
+        {{ form_end(form) }}
+
+    </form>
+    
+<a href="{{ path('fournisseur_index') }}" class="btn btn-warning" >Revenir a la liste</a>
+{% endblock %}
+
+
