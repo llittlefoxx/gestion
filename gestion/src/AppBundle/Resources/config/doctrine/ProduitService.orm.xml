@@ -4,21 +4,12 @@
     <indexes>
       <index name="FK_Reference_13" columns="idfournisseur"/>
       <index name="FK_association7" columns="idnature"/>
+      <index name="codeUnite" columns="codeUnite"/>
     </indexes>
     <id name="idprod" type="integer" column="idprod">
       <generator strategy="IDENTITY"/>
     </id>
     <field name="description" type="string" column="description" length="254" nullable="true">
-      <options>
-        <option name="fixed"/>
-      </options>
-    </field>
-    <field name="codenature" type="string" column="codeNature" length="254" nullable="true">
-      <options>
-        <option name="fixed"/>
-      </options>
-    </field>
-    <field name="codeunite" type="string" column="codeUnite" length="254" nullable="true">
       <options>
         <option name="fixed"/>
       </options>
@@ -32,6 +23,11 @@
     <many-to-one field="idnature" target-entity="Natureproduit" fetch="LAZY">
       <join-columns>
         <join-column name="idnature" referenced-column-name="idnature"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="codeunite" target-entity="Unite" fetch="LAZY">
+      <join-columns>
+        <join-column name="codeUnite" referenced-column-name="idunite"/>
       </join-columns>
     </many-to-one>
   </entity>

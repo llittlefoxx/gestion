@@ -1,41 +1,54 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'client.html.twig' %}
+{% block stylesheets %}
+    {{parent()}}
+    {% endblock %}
+    
 {% block body %}
-    <h1>Natureproduit list</h1>
+    
+        
+  {% block coname %}    {{parent()}}  Natures des produits {% endblock %}
+{{parent()}}
 
-    <table>
+        <div>
+            <label style="color: black;" >Rechercher </label>
+       
+       <input id="searchInput" />
+       <br>
+        </div>
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>Libelle</th>
-                <th>Datefinvalidite</th>
-                <th>Idnature</th>
+                <th>Date fin validité</th>
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="fbody">
         {% for natureproduit in natureproduits %}
             <tr>
                 <td><a href="{{ path('natureproduit_show', { 'id': natureproduit.idnature }) }}">{{ natureproduit.libelle }}</a></td>
                 <td>{% if natureproduit.datefinvalidite %}{{ natureproduit.datefinvalidite|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ natureproduit.idnature }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('natureproduit_show', { 'id': natureproduit.idnature }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('natureproduit_edit', { 'id': natureproduit.idnature }) }}">edit</a>
-                        </li>
-                    </ul>
+          
+                            <a href="{{ path('natureproduit_show', { 'id': natureproduit.idnature }) }}" class="btn btn-warning btn-md" role="button">Afficher</a>
+                            <a href="{{ path('natureproduit_edit', { 'id': natureproduit.idnature }) }}"  class="btn btn-info btn-md" role="button">Modifier</a>
+                            <a href="{{ path('natureproduit_del', { 'id': natureproduit.idnature }) }}"  class="btn btn-danger btn-md" role="button">Supprimer</a>
+        
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('natureproduit_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+            <a href="{{ path('natureproduit_new') }}"class="btn btn-success btn-md" >Ajouter un nouvelle nature</a>
+      <script>
+function myFunction() {
+    var x;
+    if (confirm("Press a button!") == true) {
+        x = "You pressed OK!";
+    } else {
+        x = "You pressed Cancel!";
+    }
+    document.getElementById("demo").innerHTML = x;
+}
+</script>  
 {% endblock %}

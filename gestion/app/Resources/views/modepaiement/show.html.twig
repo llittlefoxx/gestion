@@ -1,32 +1,31 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'client.html.twig' %}
+{% block stylesheets %}
+    {{parent()}}
+    {% endblock %}
+    
 {% block body %}
-    <h1>Modepaiement</h1>
+    
+        
+  {% block coname %}    {{parent()}}  Mode paiement : {{ modepaiement.libelle }} {% endblock %}
+{{parent()}}
 
-    <table>
+    <table class="table table-striped">
         <tbody>
             <tr>
                 <th>Libelle</th>
                 <td>{{ modepaiement.libelle }}</td>
             </tr>
             <tr>
-                <th>Idpaiement</th>
-                <td>{{ modepaiement.idpaiement }}</td>
+                <th>Banque</th>
+                <td>{{ modepaiement.idbanque }}</td>
             </tr>
+      
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('modepaiement_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('modepaiement_edit', { 'id': modepaiement.idpaiement }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+            <a href="{{ path('modepaiement_index') }}"  class="btn btn-warning"  >Revenir a la list</a>
+    
+            <a href="{{ path('modepaiement_edit', { 'id': modepaiement.idpaiement }) }}" class="btn btn-info btn-md" >Modifier</a>
+            <a href="{{ path('modepaiement_del', { 'id': modepaiement.idpaiement }) }}" class="btn btn-danger btn-md" >Supprimer</a>
+  
 {% endblock %}

@@ -50,7 +50,7 @@ class UniteController extends Controller
             $em->persist($unite);
             $em->flush();
 
-            return $this->redirectToRoute('unite_show', array('id' => $unite->getId()));
+            return $this->redirectToRoute('unite_show', array('id' => $unite->getIdunite()));
         }
 
         return $this->render('unite/new.html.twig', array(
@@ -92,7 +92,7 @@ class UniteController extends Controller
             $em->persist($unite);
             $em->flush();
 
-            return $this->redirectToRoute('unite_edit', array('id' => $unite->getId()));
+            return $this->redirectToRoute('unite_edit', array('id' => $unite->getIdunite()));
         }
 
         return $this->render('unite/edit.html.twig', array(
@@ -132,9 +132,37 @@ class UniteController extends Controller
     private function createDeleteForm(Unite $unite)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('unite_delete', array('id' => $unite->getId())))
+            ->setAction($this->generateUrl('unite_delete', array('id' => $unite->getIdunite())))
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+    
+          /**
+     * Deletes a contact entity.
+     *
+     * @Route("/{id}/e", name="unite_del")
+     * @Method({"GET", "POST"})
+     */
+        public function delAction($id) {
+
+        $unite = new Unite();
+        $em = $this->getDoctrine()->getManager();
+        $unite = $em->getRepository('AppBundle:Unite')->find($id);
+     
+        if ($em->remove($unite)){
+            echo "1";
+            
+        }
+        //commit
+        $em->flush();
+        //refresh
+        $unites = $em->getRepository('AppBundle:Unite')->findAll();
+
+
+        return $this->render('unite/index.html.twig', array(
+                    'unites' => $unites,
+                    
+        ));
     }
 }

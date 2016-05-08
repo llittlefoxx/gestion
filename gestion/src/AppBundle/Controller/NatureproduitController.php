@@ -50,7 +50,7 @@ class NatureproduitController extends Controller
             $em->persist($natureproduit);
             $em->flush();
 
-            return $this->redirectToRoute('natureproduit_show', array('id' => $natureproduit->getId()));
+            return $this->redirectToRoute('natureproduit_show', array('id' => $natureproduit->getIdnature()));
         }
 
         return $this->render('natureproduit/new.html.twig', array(
@@ -92,7 +92,7 @@ class NatureproduitController extends Controller
             $em->persist($natureproduit);
             $em->flush();
 
-            return $this->redirectToRoute('natureproduit_edit', array('id' => $natureproduit->getId()));
+            return $this->redirectToRoute('natureproduit_edit', array('id' => $natureproduit->getIdnature()));
         }
 
         return $this->render('natureproduit/edit.html.twig', array(
@@ -132,9 +132,36 @@ class NatureproduitController extends Controller
     private function createDeleteForm(Natureproduit $natureproduit)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('natureproduit_delete', array('id' => $natureproduit->getId())))
+            ->setAction($this->generateUrl('natureproduit_delete', array('id' => $natureproduit->getIdnature())))
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+         /**
+     * Deletes a contact entity.
+     *
+     * @Route("/{id}/e", name="natureproduit_del")
+     * @Method({"GET", "POST"})
+     */
+        public function delAction($id) {
+
+        $nature = new Natureproduit();
+        $em = $this->getDoctrine()->getManager();
+        $nature = $em->getRepository('AppBundle:Natureproduit')->find($id);
+     
+        if ($em->remove($nature)){
+            echo "1";
+            
+        }
+        //commit
+        $em->flush();
+        //refresh
+        $natures = $em->getRepository('AppBundle:Natureproduit')->findAll();
+
+
+        return $this->render('natureproduit/index.html.twig', array(
+                    'natureproduits' => $natures,
+                    
+        ));
     }
 }

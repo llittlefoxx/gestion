@@ -7,17 +7,16 @@
 {% block body %}
 
 
-    {% block coname %}    {{parent()}}  Créer un nouveau Tax {% endblock %}
+    {% block coname %}    {{parent()}}  Nouvelle banque  {% endblock %}
     {{parent()}}
     {{ form_start(form) }}
 
-
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Créer" class="btn btn-success" />
+        <input type="submit" value="Créer"  class="btn btn-success" />
     {{ form_end(form) }}
 
-  
-            <a href="{{ path('tax_index') }}" class="btn btn-warning" >Revenir a la liste</a>
 
+            <a href="{{ path('banque_index') }}" class="btn btn-warning" >Revenir a la liste</a>
+ 
 {% endblock %}

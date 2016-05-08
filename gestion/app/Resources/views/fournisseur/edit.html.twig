@@ -1,21 +1,22 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'client.html.twig' %}
+{% block stylesheets %}
+    {{parent()}}
+    {% endblock %}
+    
 {% block body %}
-    <h1>Fournisseur edit</h1>
+        
+  {% block coname %}    {{parent()}} Modifier  Fournisseur {% endblock %}
+{{parent()}}
+
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+        <br>
+        <br>
+        <input type="submit" value="Modifier"  class="btn btn-success btn-md" />
 
-    <ul>
-        <li>
-            <a href="{{ path('fournisseur_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+            {{ form_end(edit_form) }}
+            
+             <a href="{{ path('fournisseur_index') }}" class="btn btn-warning btn-md" >Revenir a la liste</a>
+       
 {% endblock %}

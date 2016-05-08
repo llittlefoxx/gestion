@@ -7,8 +7,6 @@
         <thead>
             <tr>
                 <th>Description</th>
-                <th>Codenature</th>
-                <th>Codeunite</th>
                 <th>Fournit</th>
                 <th>Idprod</th>
                 <th>Actions</th>
@@ -18,8 +16,6 @@
         {% for produitService in produitServices %}
             <tr>
                 <td><a href="{{ path('produitservice_show', { 'id': produitService.idprod }) }}">{{ produitService.description }}</a></td>
-                <td>{{ produitService.codenature }}</td>
-                <td>{{ produitService.codeunite }}</td>
                 <td>{% if produitService.fournit %}Yes{% else %}No{% endif %}</td>
                 <td>{{ produitService.idprod }}</td>
                 <td>

@@ -1,39 +1,57 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'client.html.twig' %}
+{% block stylesheets %}
+    {{parent()}}
+    {% endblock %}
+    
 {% block body %}
-    <h1>Modepaiement list</h1>
+    
+        
+  {% block coname %}    {{parent()}}  Modes de paiement {% endblock %}
+{{parent()}}
 
-    <table>
+
+        <div>
+            <label style="color: black;" >Rechercher </label>
+       
+       <input id="searchInput" />
+       <br>
+        </div>
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>Libelle</th>
-                <th>Idpaiement</th>
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="fbody">
         {% for modepaiement in modepaiements %}
             <tr>
                 <td><a href="{{ path('modepaiement_show', { 'id': modepaiement.idpaiement }) }}">{{ modepaiement.libelle }}</a></td>
-                <td>{{ modepaiement.idpaiement }}</td>
+              
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('modepaiement_show', { 'id': modepaiement.idpaiement }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('modepaiement_edit', { 'id': modepaiement.idpaiement }) }}">edit</a>
-                        </li>
-                    </ul>
+              
+                            <a href="{{ path('modepaiement_show', { 'id': modepaiement.idpaiement }) }}"  class="btn btn-warning btn-md" role="button">Afficher</a>
+                            <a href="{{ path('modepaiement_edit', { 'id': modepaiement.idpaiement }) }}" class="btn btn-info btn-md" role="button">Modifier</a>
+                            <a href="{{ path('modepaiement_del', { 'id': modepaiement.idpaiement }) }}" class="btn btn-danger btn-md" role="button">Supprimer</a>
+            
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('modepaiement_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+
+            <a href="{{ path('modepaiement_new') }}" class="btn btn-success btn-md" >Ajouter un nouveau Mode de paiement</a>
+
+    <script>
+        function myFunction() {
+            var x;
+            if (confirm("Press a button!") == true) {
+                x = "You pressed OK!";
+            } else {
+                x = "You pressed Cancel!";
+            }
+            document.getElementById("demo").innerHTML = x;
+        }
+    </script>  
 {% endblock %}

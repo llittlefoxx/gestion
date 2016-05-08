@@ -2,32 +2,25 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Modepaiement
- *
- * @ORM\Table(name="modepaiement")
- * @ORM\Entity
  */
 class Modepaiement
 {
     /**
      * @var string
-     *
-     * @ORM\Column(name="libelle", type="string", length=254, nullable=true)
      */
     private $libelle;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="idpaiement", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idpaiement;
 
+    /**
+     * @var \AppBundle\Entity\Banque
+     */
+    private $idbanque;
 
 
     /**
@@ -62,5 +55,29 @@ class Modepaiement
     public function getIdpaiement()
     {
         return $this->idpaiement;
+    }
+
+    /**
+     * Set idbanque
+     *
+     * @param \AppBundle\Entity\Banque $idbanque
+     *
+     * @return Modepaiement
+     */
+    public function setIdbanque(\AppBundle\Entity\Banque $idbanque = null)
+    {
+        $this->idbanque = $idbanque;
+
+        return $this;
+    }
+
+    /**
+     * Get idbanque
+     *
+     * @return \AppBundle\Entity\Banque
+     */
+    public function getIdbanque()
+    {
+        return $this->idbanque;
     }
 }

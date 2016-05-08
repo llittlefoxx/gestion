@@ -1,9 +1,16 @@
-{% extends 'base.html.twig' %}
+{% extends 'client.html.twig' %}
+{% block stylesheets %}
+    {{parent()}}
+{% endblock %}
 
 {% block body %}
-    <h1>Natureproduit</h1>
 
-    <table>
+
+    {% block coname %}    {{parent()}}  Nature de produit : {{ natureproduit.libelle }} {% endblock %}
+    {{parent()}}
+
+
+    <table class="table table-striped">
         <tbody>
             <tr>
                 <th>Libelle</th>
@@ -13,24 +20,12 @@
                 <th>Datefinvalidite</th>
                 <td>{% if natureproduit.datefinvalidite %}{{ natureproduit.datefinvalidite|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
-            <tr>
-                <th>Idnature</th>
-                <td>{{ natureproduit.idnature }}</td>
-            </tr>
+
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('natureproduit_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('natureproduit_edit', { 'id': natureproduit.idnature }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <a href="{{ path('natureproduit_index') }}" class="btn btn-warning"  >Revenir a la list</a>
+    <a href="{{ path('natureproduit_edit', { 'id': natureproduit.idnature }) }}" class="btn btn-info btn-md" >Modifier</a>
+    <a href="{{ path('natureproduit_del', { 'id': natureproduit.idnature }) }}" class="btn btn-danger btn-md" >Supprimer</a>
+
 {% endblock %}

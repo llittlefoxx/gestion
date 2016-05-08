@@ -1,41 +1,57 @@
-{% extends 'base.html.twig' %}
+{% extends 'client.html.twig' %}
+{% block stylesheets %}
+    {{parent()}}
+{% endblock %}
 
 {% block body %}
-    <h1>Unite list</h1>
 
-    <table>
+
+    {% block coname %}    {{parent()}}  Unités {% endblock %}
+    {{parent()}}
+
+
+    <div>
+        <label style="color: black;" >Rechercher </label>
+
+        <input id="searchInput" />
+        <br>
+    </div>
+
+    <table  class="table table-bordered">
         <thead>
             <tr>
                 <th>Libelle</th>
                 <th>Datefinvalidite</th>
-                <th>Idunite</th>
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody  id="fbody">
         {% for unite in unites %}
             <tr>
                 <td><a href="{{ path('unite_show', { 'id': unite.idunite }) }}">{{ unite.libelle }}</a></td>
                 <td>{% if unite.datefinvalidite %}{{ unite.datefinvalidite|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ unite.idunite }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('unite_show', { 'id': unite.idunite }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('unite_edit', { 'id': unite.idunite }) }}">edit</a>
-                        </li>
-                    </ul>
+           
+                            <a href="{{ path('unite_show', { 'id': unite.idunite }) }}" class="btn btn-warning btn-md" role="button">Afficher</a>
+                            <a href="{{ path('unite_edit', { 'id': unite.idunite }) }}"  class="btn btn-info btn-md" role="button">Modifier</a>
+                            <a href="{{ path('unite_del', { 'id': unite.idunite }) }}"  class="btn btn-danger btn-md" role="button">Supprimer</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('unite_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+  
+            <a href="{{ path('unite_new') }}"  class="btn btn-success btn-md" >Nouvelle unité</a>
+   <script>
+        function myFunction() {
+            var x;
+            if (confirm("Press a button!") == true) {
+                x = "You pressed OK!";
+            } else {
+                x = "You pressed Cancel!";
+            }
+            document.getElementById("demo").innerHTML = x;
+        }
+    </script>  
 {% endblock %}

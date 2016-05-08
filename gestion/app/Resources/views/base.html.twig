@@ -2,7 +2,7 @@
 
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
-
+        
         
 
 <html lang="en">
@@ -16,7 +16,7 @@
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
 	<link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
         <link rel="stylesheet" href="{{asset('css/perso.css')}}">
-	<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}css/jquery.bxslider.css">
+	<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/isotope.css')}}" media="screen" />	
 	<link rel="stylesheet" href="{{asset('css/animate.css')}}">
 	<link rel="stylesheet" href="{{asset('js/fancybox/jquery.fancybox.css')}}" type="text/css" media="screen" />
@@ -45,16 +45,17 @@
 							<span class="icon-bar"></span>
 						</button>
 						<div class="navbar-brand">
-							<a  href="{{ path('homepage') }}"><h1><span>M</span>ulti</h1></a>
+							<a href="{{ path('homepage') }}"><h1><span>M</span>ulti</h1></a>
 						</div>
 					</div>
 					
 					<div class="navbar-collapse collapse">							
 						<div class="menu">
 							<ul class="nav nav-tabs" role="tablist">
-							
-                                                                <li role="presentation"><a href="{{ path('fos_user_security_login') }}">Connection</a></li>
-                                                               <li role="presentation"><a  href="{{ path('fos_user_registration_register') }}" >Créer votre compte</a></li>
+                                                            <li role="presentation"><a href="{{ path('homepage') }}" class="active">Home</a></li>
+								<li role="presentation"><a href="{{ path('fournisseur_index') }}">Fournisseurs</a></li>
+								<li role="presentation"><a href="{{ path('fos_user_profile_show') }}">Profil</a></li>	
+                                                                <li role="presentation"><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>	
 							</ul>
 						</div>
 					</div>						
@@ -63,60 +64,93 @@
 		</nav>		
 	</header>
    
-	<div class="slider">
-		<div class="img-responsive">
-			<ul class="bxslider">				
-				<li><img src="{{asset('images/slider/1.jpg')}}" alt=""/></li>								
-						
-			</ul>
-		</div>	
-    </div>
-	
 
 	
-	<div class="main-feature">
-	
-		
+	<div class="container">
 		<div class="text-center">
-			<div class="wow bounceInDown" data-wow-offset="0" data-wow-delay="0.3s">
-				<h2>Le Mailer le plus facile a utiliser</h2>
-			</div>
-			<div class="wow bounceInUp" data-wow-offset="0" data-wow-delay="0.6s">
-				<p>Découvrez nos offres !</p>
-			</div>
 			
-			<a type="button" class="btn btn-default"  href="{{ path('fos_user_security_login') }}">Connectez vous !</a>
-			<a type="button" class="btn btn-default" href="{{ path('fos_user_registration_register') }}" >Créer votre compte</a>
-		</div>	
-		
+			<div class="wow bounceInDown" data-wow-offset="0" data-wow-delay="0.6s">
+                            <h2>{%block coname%} {%endblock%}</h2>
+			</div>
+		</div>
 	</div>
 	
+		<div class="box">
+		
+		</div>
+
 	
+	
+	
+
+                        <br>
+	{% endblock %}
 	
 	<footer>
 		<div class="footer">
-			
+			<div class="container">
+				
+				
+			</div>
 		</div>
 		
-		<div class="sub-footer">
 		
-			</div>
-		</div>		
 	</footer>
    
 	
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->	
-    <script src="js/jquery-2.1.1.min.js"></script>	
+    <script src="{{asset('js/jquery-2.1.1.min.js')}}"></script>	
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-	<script src="js/wow.min.js"></script>
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
+	<script src="{{asset('js/wow.min.js')}}"></script>
 	<script src="js/fancybox/jquery.fancybox.pack.js"></script>
-	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="{{asset('js/jquery.easing.1.3.js')}}"></script>
 	<script src="js/jquery.bxslider.min.js"></script>
-	<script src="js/jquery.prettyPhoto.js"></script>
+	<script src="{{asset('js/jquery.prettyPhoto.js')}}"></script>
 	<script src="js/jquery.isotope.min.js"></script> 
 	<script src="js/functions.js"></script>
+          <script src="{{ asset('js/jquery.js') }}"></script>
+        
+        <script>
+              $("#searchInput").keyup(function () {
+    //split the current value of searchInput
+    var data = this.value.split(" ");
+    //create a jquery object of the rows
+    var jo = $("#fbody").find("tr");
+    if (this.value == "") {
+        jo.show();
+        return;
+    }
+    //hide all the rows
+    jo.hide();
+
+    //Recusively filter the jquery object to get results.
+    jo.filter(function (i, v) {
+        var $t = $(this);
+        for (var d = 0; d < data.length; ++d) {
+            if ($t.is(":contains('" + data[d] + "')")) {
+                return true;
+            }
+        }
+        return false;
+    })
+    //show the rows that match.
+    .show();
+}).focus(function () {
+    this.value = "";
+    $(this).css({
+        "color": "black"
+    });
+    $(this).unbind('focus');
+}).css({
+    "color": "#C0C0C0"
+});
+            
+            
+        </script>
 	<script>
+          
+            
 	wow = new WOW(
 	 {
 	
@@ -125,6 +159,6 @@
 	</script>
 	
   </body>
-  {% endblock %}
+  
         {% block javascripts %}{% endblock %}
 </html>

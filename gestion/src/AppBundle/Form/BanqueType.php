@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ProduitServiceType extends AbstractType
+class BanqueType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,11 +15,9 @@ class ProduitServiceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('description')
-            ->add('fournit')
-            ->add('idfournisseur')
-            ->add('idnature')
-            ->add('codeunite')
+            ->add('nom')
+            ->add('adresse')
+            ->add('num')
         ;
     }
     
@@ -29,7 +27,7 @@ class ProduitServiceType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\ProduitService'
+            'data_class' => 'AppBundle\Entity\Banque'
         ));
     }
 }

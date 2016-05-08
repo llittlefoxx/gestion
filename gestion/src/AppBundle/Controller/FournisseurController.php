@@ -2,12 +2,12 @@
 
 namespace AppBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Entity\Fournisseur;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use AppBundle\Entity\Fournisseur;
-use AppBundle\Form\FournisseurType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Fournisseur controller.
@@ -127,7 +127,7 @@ class FournisseurController extends Controller
      *
      * @param Fournisseur $fournisseur The Fournisseur entity
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return Form The form
      */
     private function createDeleteForm(Fournisseur $fournisseur)
     {
@@ -136,5 +136,33 @@ class FournisseurController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+    
+    /**
+     * Deletes a contact entity.
+     *
+     * @Route("/{id}/e", name="fournisseur_del")
+     * @Method({"GET", "POST"})
+     */
+        public function delAction($id) {
+
+        $fournisseur = new Fournisseur();
+        $em = $this->getDoctrine()->getManager();
+        $fournisseur = $em->getRepository('AppBundle:Fournisseur')->find($id);
+     
+        if ($em->remove($fournisseur)){
+            echo "1";
+            
+        }
+        //commit
+        $em->flush();
+        //refresh
+        $fournisseurs = $em->getRepository('AppBundle:Fournisseur')->findAll();
+
+
+        return $this->render('fournisseur/index.html.twig', array(
+                    'fournisseurs' => $fournisseurs,
+                    
+        ));
     }
 }

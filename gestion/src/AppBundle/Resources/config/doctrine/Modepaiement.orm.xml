@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
   <entity name="AppBundle\Entity\Modepaiement" table="modepaiement">
+    <indexes>
+      <index name="idbanque" columns="idbanque"/>
+    </indexes>
     <id name="idpaiement" type="integer" column="idpaiement">
       <generator strategy="IDENTITY"/>
     </id>
@@ -9,5 +12,10 @@
         <option name="fixed"/>
       </options>
     </field>
+    <many-to-one field="idbanque" target-entity="Banque" fetch="LAZY">
+      <join-columns>
+        <join-column name="idbanque" referenced-column-name="idbanque"/>
+      </join-columns>
+    </many-to-one>
   </entity>
 </doctrine-mapping>

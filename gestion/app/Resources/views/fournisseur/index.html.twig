@@ -1,13 +1,22 @@
 {% extends 'client.html.twig' %}
 {% block stylesheets %}
     {{parent()}}
-    {% endblock %}
-    
+{% endblock %}
+
 {% block body %}
-    
-        
-  {% block coname %}    {{parent()}}  Fournisseurs {% endblock %}
-{{parent()}}
+
+
+    {% block coname %}    {{parent()}}  Fournisseurs {% endblock %}
+    {{parent()}}
+
+
+    <div>
+        <label style="color: black;" >Rechercher </label>
+
+        <input id="searchInput" />
+        <br>
+    </div>
+
 
     <table class="table table-bordered">
         <thead>
@@ -20,36 +29,35 @@
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
-        {% for fournisseur in fournisseurs %}
-            <tr>
-                <td><a href="{{ path('fournisseur_show', { 'id': fournisseur.idfournisseur }) }}">{{ fournisseur.raisonsociale }}</a></td>
-                <td>{{ fournisseur.adrfour }}</td>
-                <td>{{ fournisseur.telfour }}</td>
-                <td>{{ fournisseur.faxfour }}</td>
-                <td>{{ fournisseur.sitewebfour }}</td>
-                <td>
-                            <a href="{{ path('fournisseur_show', { 'id': fournisseur.idfournisseur }) }}" class="btn btn-warning btn-md" role="button">Afficher</a>
-                       
-                            <a href="{{ path('fournisseur_edit', { 'id': fournisseur.idfournisseur }) }}" class="btn btn-info btn-md" role="button">Modifier</a>
-                     <a href="{{ path('fournisseur_edit', { 'id': fournisseur.idfournisseur }) }}" class="btn btn-danger btn-md" role="button">Supprimer</a>
-                </td>
-            </tr>
-        {% endfor %}
+        <tbody id="fbody">
+            {% for fournisseur in fournisseurs %}
+                <tr>
+                    <td><a href="{{ path('fournisseur_show', { 'id': fournisseur.idfournisseur }) }}">{{ fournisseur.raisonsociale }}</a></td>
+                    <td>{{ fournisseur.adrfour }}</td>
+                    <td>{{ fournisseur.telfour }}</td>
+                    <td>{{ fournisseur.faxfour }}</td>
+                    <td>{{ fournisseur.sitewebfour }}</td>
+                    <td>
+                        <a href="{{ path('fournisseur_show', { 'id': fournisseur.idfournisseur }) }}" class="btn btn-warning btn-md" role="button">Afficher</a>
+                        <a href="{{ path('fournisseur_edit', { 'id': fournisseur.idfournisseur }) }}" class="btn btn-info btn-md" role="button">Modifier</a>
+                        <a href="{{ path('fournisseur_del', { 'id': fournisseur.idfournisseur }) }}" class="btn btn-danger btn-md" role="button">Supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 
-            <a href="{{ path('fournisseur_new') }}">Ajouter un nouveau fournisseur</a>
-     
-            <script>
-function myFunction() {
-    var x;
-    if (confirm("Press a button!") == true) {
-        x = "You pressed OK!";
-    } else {
-        x = "You pressed Cancel!";
-    }
-    document.getElementById("demo").innerHTML = x;
-}
-</script>  
+    <a href="{{ path('fournisseur_new') }}" class="btn btn-success btn-md" >Ajouter un nouveau fournisseur</a>
+
+    <script>
+        function myFunction() {
+            var x;
+            if (confirm("Press a button!") == true) {
+                x = "You pressed OK!";
+            } else {
+                x = "You pressed Cancel!";
+            }
+            document.getElementById("demo").innerHTML = x;
+        }
+    </script>  
 {% endblock %}

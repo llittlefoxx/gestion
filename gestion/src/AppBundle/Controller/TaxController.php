@@ -137,4 +137,32 @@ class TaxController extends Controller
             ->getForm()
         ;
     }
+    
+         /**
+     * Deletes a contact entity.
+     *
+     * @Route("/{id}/e", name="tax_del")
+     * @Method({"GET", "POST"})
+     */
+        public function delAction($id) {
+
+        $tax = new Tax();
+        $em = $this->getDoctrine()->getManager();
+        $tax = $em->getRepository('AppBundle:Tax')->find($id);
+     
+        if ($em->remove($tax)){
+            echo "1";
+            
+        }
+        //commit
+        $em->flush();
+        //refresh
+        $taxs = $em->getRepository('AppBundle:Tax')->findAll();
+
+
+        return $this->render('tax/index.html.twig', array(
+                    'taxes' => $taxs,
+                    
+        ));
+    }
 }

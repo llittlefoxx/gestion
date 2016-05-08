@@ -1,0 +1,62 @@
+{% extends 'client.html.twig' %}
+{% block stylesheets %}
+    {{parent()}}
+    {% endblock %}
+    
+{% block body %}
+    
+        
+  {% block coname %}    {{parent()}}  Banques {% endblock %}
+{{parent()}}
+
+
+        <div>
+            <label style="color: black;" >Rechercher </label>
+       
+       <input id="searchInput" />
+       <br>
+        </div>
+
+    <table  class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Adresse</th>
+                <th>Num</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="fbody">
+        {% for banque in banques %}
+            <tr>
+                <td><a href="{{ path('banque_show', { 'id': banque.idbanque }) }}">{{ banque.nom }}</a></td>
+                <td>{{ banque.adresse }}</td>
+                <td>{{ banque.num }}</td>
+                <td>
+              
+                            <a href="{{ path('banque_show', { 'id': banque.idbanque }) }}"  class="btn btn-warning btn-md" role="button">Afficher</a>
+                            <a href="{{ path('banque_edit', { 'id': banque.idbanque }) }}" class="btn btn-info btn-md" role="button">Modifier</a>
+                            <a href="{{ path('banque_del', { 'id': banque.idbanque }) }}" class="btn btn-danger btn-md" role="button">Supprimer</a>
+                 
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+            <a href="{{ path('banque_new') }}" class="btn btn-success btn-md" >Nouvelle banque</a>
+       
+ 
+            <script>
+function myFunction() {
+    var x;
+    if (confirm("Press a button!") == true) {
+        x = "You pressed OK!";
+    } else {
+        x = "You pressed Cancel!";
+    }
+    document.getElementById("demo").innerHTML = x;
+}
+</script>  
+{% endblock %}

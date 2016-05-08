@@ -1,16 +1,20 @@
-{% extends 'base.html.twig' %}
+{% extends 'client.html.twig' %}
+
+{% block stylesheets %}
+    {{parent()}}
+{% endblock %}
 
 {% block body %}
-    <h1>Unite creation</h1>
+
+
+    {% block coname %}    {{parent()}}  Nouvelle unité {% endblock %}
+    {{parent()}}
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+        <input type="submit" value="Créer" class="btn btn-success" />
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('unite_index') }}">Back to the list</a>
-        </li>
-    </ul>
+            <a href="{{ path('unite_index') }}"  class="btn btn-warning" >Revenir a la liste</a>
+
 {% endblock %}

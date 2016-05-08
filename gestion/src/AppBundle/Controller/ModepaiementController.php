@@ -50,7 +50,7 @@ class ModepaiementController extends Controller
             $em->persist($modepaiement);
             $em->flush();
 
-            return $this->redirectToRoute('modepaiement_show', array('id' => $modepaiement->getId()));
+            return $this->redirectToRoute('modepaiement_show', array('id' => $modepaiement->getIdpaiement()));
         }
 
         return $this->render('modepaiement/new.html.twig', array(
@@ -92,7 +92,7 @@ class ModepaiementController extends Controller
             $em->persist($modepaiement);
             $em->flush();
 
-            return $this->redirectToRoute('modepaiement_edit', array('id' => $modepaiement->getId()));
+            return $this->redirectToRoute('modepaiement_edit', array('id' => $modepaiement->getIdpaiement()));
         }
 
         return $this->render('modepaiement/edit.html.twig', array(
@@ -132,9 +132,37 @@ class ModepaiementController extends Controller
     private function createDeleteForm(Modepaiement $modepaiement)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('modepaiement_delete', array('id' => $modepaiement->getId())))
+            ->setAction($this->generateUrl('modepaiement_delete', array('id' => $modepaiement->getIdpaiement())))
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+    
+      /**
+     * Deletes a contact entity.
+     *
+     * @Route("/{id}/e", name="modepaiement_del")
+     * @Method({"GET", "POST"})
+     */
+        public function delAction($id) {
+
+        $modepaiement = new Modepaiement();
+        $em = $this->getDoctrine()->getManager();
+        $modepaiement = $em->getRepository('AppBundle:Modepaiement')->find($id);
+     
+        if ($em->remove($modepaiement)){
+            echo "1";
+            
+        }
+        //commit
+        $em->flush();
+        //refresh
+        $modepaiements = $em->getRepository('AppBundle:Modepaiement')->findAll();
+
+
+        return $this->render('modepaiement/index.html.twig', array(
+                    'modepaiements' => $modepaiements,
+                    
+        ));
     }
 }

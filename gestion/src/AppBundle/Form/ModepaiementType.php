@@ -16,6 +16,7 @@ class ModepaiementType extends AbstractType
     {
         $builder
             ->add('libelle')
+            ->add('idbanque')
         ;
     }
     

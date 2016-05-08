@@ -1,0 +1,36 @@
+{% extends 'client.html.twig' %}
+{% block stylesheets %}
+    {{parent()}}
+    {% endblock %}
+    
+{% block body %}
+    
+        
+  {% block coname %}    {{parent()}}  Banque : {{ banque.nom }} {% endblock %}
+{{parent()}}
+
+
+    <table  class="table table-striped">
+        <tbody>
+            <tr>
+                <th>Nom</th>
+                <td>{{ banque.nom }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ banque.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Num</th>
+                <td>{{ banque.num }}</td>
+            </tr>
+       
+        </tbody>
+    </table>
+
+  
+            <a href="{{ path('banque_index') }}" class="btn btn-warning"  >Revenir a la list</a>
+            <a href="{{ path('banque_edit', { 'id': banque.idbanque }) }}" class="btn btn-info btn-md" >Modifier</a>
+            <a href="{{ path('banque_edit', { 'id': banque.idbanque }) }}" class="btn btn-danger btn-md" >Supprimer</a>
+
+{% endblock %}

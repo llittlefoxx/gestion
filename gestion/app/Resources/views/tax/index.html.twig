@@ -1,43 +1,61 @@
-{% extends 'base.html.twig' %}
+{% extends 'client.html.twig' %}
+{% block stylesheets %}
+    {{parent()}}
+{% endblock %}
 
 {% block body %}
-    <h1>Tax list</h1>
 
-    <table>
+
+    {% block coname %}    {{parent()}}  Taxs {% endblock %}
+    {{parent()}}
+
+
+    <div>
+        <label style="color: black;" >Rechercher </label>
+
+        <input id="searchInput" />
+        <br>
+    </div>
+
+
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>Libelle</th>
                 <th>Pourcentage</th>
                 <th>Datefinvalidite</th>
-                <th>Idtax</th>
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbodys id="fbody">
         {% for tax in taxes %}
             <tr>
                 <td><a href="{{ path('tax_show', { 'id': tax.idtax }) }}">{{ tax.libelle }}</a></td>
                 <td>{{ tax.pourcentage }}</td>
                 <td>{% if tax.datefinvalidite %}{{ tax.datefinvalidite|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ tax.idtax }}</td>
+         
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('tax_show', { 'id': tax.idtax }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('tax_edit', { 'id': tax.idtax }) }}">edit</a>
-                        </li>
-                    </ul>
+                 
+                        <a href="{{ path('tax_show', { 'id': tax.idtax }) }}" class="btn btn-warning btn-md" role="button">Afficher</a>
+                        <a href="{{ path('tax_edit', { 'id': tax.idtax  }) }}" class="btn btn-info btn-md" role="button">Modifier</a>
+                        <a href="{{ path('tax_del', { 'id': tax.idtax  }) }}" class="btn btn-danger btn-md" role="button">Supprimer</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('tax_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+
+            <a href="{{ path('tax_new') }}" class="btn btn-success btn-md" >Nouveau</a>
+            <script>
+        function myFunction() {
+            var x;
+            if (confirm("Press a button!") == true) {
+                x = "You pressed OK!";
+            } else {
+                x = "You pressed Cancel!";
+            }
+            document.getElementById("demo").innerHTML = x;
+        }
+    </script>  
 {% endblock %}
