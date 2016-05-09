@@ -94,4 +94,9 @@ class Unite
     {
         return $this->idunite;
     }
+    
+    public function __toString() {
+        return $this->getLibelle();
+    }
+
 }

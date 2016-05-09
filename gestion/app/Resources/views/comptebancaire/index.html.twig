@@ -1,43 +1,62 @@
-{% extends 'base.html.twig' %}
+{% extends 'client.html.twig' %}
+{% block stylesheets %}
+    {{parent()}}
+{% endblock %}
 
 {% block body %}
-    <h1>Comptebancaire list</h1>
 
-    <table>
+
+    {% block coname %}    {{parent()}}  Comptes {% endblock %}
+    {{parent()}}
+
+
+    <div>
+        <label style="color: black;" >Rechercher </label>
+
+        <input id="searchInput" />
+        <br>
+    </div>
+
+
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>Numrib</th>
                 <th>Datefinvalidite</th>
                 <th>Proprietaire</th>
-                <th>Idcompte</th>
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="fbody">
         {% for comptebancaire in comptebancaires %}
             <tr>
                 <td><a href="{{ path('comptebancaire_show', { 'id': comptebancaire.idcompte }) }}">{{ comptebancaire.numrib }}</a></td>
                 <td>{% if comptebancaire.datefinvalidite %}{{ comptebancaire.datefinvalidite|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ comptebancaire.proprietaire }}</td>
-                <td>{{ comptebancaire.idcompte }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('comptebancaire_show', { 'id': comptebancaire.idcompte }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('comptebancaire_edit', { 'id': comptebancaire.idcompte }) }}">edit</a>
-                        </li>
-                    </ul>
+                    
+                            <a href="{{ path('comptebancaire_show', { 'id': comptebancaire.idcompte }) }}" class="btn btn-warning btn-md" role="button">Afficher</a>
+                 
+                            <a href="{{ path('comptebancaire_edit', { 'id': comptebancaire.idcompte }) }}"  class="btn btn-info btn-md" role="button">Modifier</a>
+                            <a href="{{ path('comptebancaire_del', { 'id': comptebancaire.idcompte }) }}"  class="btn btn-danger btn-md" role="button">Supprimer</a>
+               
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('comptebancaire_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+
+            <a href="{{ path('comptebancaire_new') }}"  class="btn btn-success btn-md" >Nouveau</a>
+ <script>
+        function myFunction() {
+            var x;
+            if (confirm("Press a button!") == true) {
+                x = "You pressed OK!";
+            } else {
+                x = "You pressed Cancel!";
+            }
+            document.getElementById("demo").innerHTML = x;
+        }
+    </script>  
 {% endblock %}

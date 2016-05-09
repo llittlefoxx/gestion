@@ -1,9 +1,16 @@
-{% extends 'base.html.twig' %}
+{% extends 'client.html.twig' %}
+{% block stylesheets %}
+    {{parent()}}
+{% endblock %}
 
 {% block body %}
-    <h1>Structure</h1>
 
-    <table>
+
+    {% block coname %}    {{parent()}}  Strucutre : {{ structure.libellestructure }} {% endblock %}
+    {{parent()}}
+
+
+    <table class="table table-striped">
         <tbody>
             <tr>
                 <th>Libellestructure</th>
@@ -13,24 +20,14 @@
                 <th>Datefinvalidite</th>
                 <td>{% if structure.datefinvalidite %}{{ structure.datefinvalidite|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
-            <tr>
-                <th>Idstruct</th>
-                <td>{{ structure.idstruct }}</td>
-            </tr>
+ 
+            
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('structure_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('structure_edit', { 'id': structure.idstruct }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+            <a href="{{ path('structure_index') }}" class="btn btn-warning"  >Revenir a la list</a>
+
+            <a href="{{ path('structure_edit', { 'id': structure.idstruct }) }}" class="btn btn-info btn-md" >Modifier</a>
+            <a href="{{ path('structure_del', { 'id': structure.idstruct }) }}" class="btn btn-danger btn-md" >Supprimer</a>
+
 {% endblock %}

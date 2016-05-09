@@ -50,7 +50,7 @@ class ProduitServiceController extends Controller
             $em->persist($produitService);
             $em->flush();
 
-            return $this->redirectToRoute('produitservice_show', array('id' => $produitService->getId()));
+            return $this->redirectToRoute('produitservice_show', array('id' => $produitService->getIdprod()));
         }
 
         return $this->render('produitservice/new.html.twig', array(
@@ -92,7 +92,7 @@ class ProduitServiceController extends Controller
             $em->persist($produitService);
             $em->flush();
 
-            return $this->redirectToRoute('produitservice_edit', array('id' => $produitService->getId()));
+            return $this->redirectToRoute('produitservice_edit', array('id' => $produitService->getIdprod()));
         }
 
         return $this->render('produitservice/edit.html.twig', array(
@@ -132,9 +132,37 @@ class ProduitServiceController extends Controller
     private function createDeleteForm(ProduitService $produitService)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('produitservice_delete', array('id' => $produitService->getId())))
+            ->setAction($this->generateUrl('produitservice_delete', array('id' => $produitService->getIdprod())))
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+    
+    /**
+     * Deletes a contact entity.
+     *
+     * @Route("/{id}/e", name="produitservice_del")
+     * @Method({"GET", "POST"})
+     */
+        public function delAction($id) {
+
+        $produit = new ProduitService();
+        $em = $this->getDoctrine()->getManager();
+        $produit = $em->getRepository('AppBundle:ProduitService')->find($id);
+     
+        if ($em->remove($produit)){
+            echo "1";
+            
+        }
+        //commit
+        $em->flush();
+        //refresh
+        $produits = $em->getRepository('AppBundle:ProduitService')->findAll();
+
+
+        return $this->render('produitservice/index.html.twig', array(
+                    'produitServices' => $produits,
+                    
+        ));
     }
 }

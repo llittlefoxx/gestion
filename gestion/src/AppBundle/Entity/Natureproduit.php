@@ -94,4 +94,10 @@ class Natureproduit
     {
         return $this->idnature;
     }
-}
+    public function __toString() {
+        return $this->getLibelle();
+    }
+
+    
+    
+    }

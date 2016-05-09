@@ -137,4 +137,32 @@ class ComptebancaireController extends Controller
             ->getForm()
         ;
     }
+    
+         /**
+     * Deletes a contact entity.
+     *
+     * @Route("/{id}/e", name="comptebancaire_del")
+     * @Method({"GET", "POST"})
+     */
+        public function delAction($id) {
+
+        $nature = new Comptebancaire();
+        $em = $this->getDoctrine()->getManager();
+        $nature = $em->getRepository('AppBundle:Comptebancaire')->find($id);
+     
+        if ($em->remove($nature)){
+            echo "1";
+            
+        }
+        //commit
+        $em->flush();
+        //refresh
+        $natures = $em->getRepository('AppBundle:Comptebancaire')->findAll();
+
+
+        return $this->render('comptebancaire/index.html.twig', array(
+                    'comptebancaires' => $natures,
+                    
+        ));
+    }
 }

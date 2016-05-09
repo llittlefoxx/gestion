@@ -187,4 +187,9 @@ class Fournisseur
     {
         return $this->idfournisseur;
     }
+    
+    public function __toString() {
+        return $this->getRaisonsociale();
+    }
+
 }

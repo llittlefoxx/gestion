@@ -1,41 +1,59 @@
-{% extends 'base.html.twig' %}
+{% extends 'client.html.twig' %}
+{% block stylesheets %}
+    {{parent()}}
+{% endblock %}
 
 {% block body %}
-    <h1>Structure list</h1>
 
-    <table>
+
+    {% block coname %}    {{parent()}}  Structure {% endblock %}
+    {{parent()}}
+
+
+    <div>
+        <label style="color: black;" >Rechercher </label>
+
+        <input id="searchInput" />
+        <br>
+    </div>
+
+
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>Libellestructure</th>
                 <th>Datefinvalidite</th>
-                <th>Idstruct</th>
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="fbody">
         {% for structure in structures %}
             <tr>
                 <td><a href="{{ path('structure_show', { 'id': structure.idstruct }) }}">{{ structure.libellestructure }}</a></td>
                 <td>{% if structure.datefinvalidite %}{{ structure.datefinvalidite|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ structure.idstruct }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('structure_show', { 'id': structure.idstruct }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('structure_edit', { 'id': structure.idstruct }) }}">edit</a>
-                        </li>
-                    </ul>
+                  
+                            <a href="{{ path('structure_show', { 'id': structure.idstruct }) }}" class="btn btn-warning btn-md" role="button">Afficher</a>
+                      
+                            <a href="{{ path('structure_edit', { 'id': structure.idstruct }) }}" class="btn btn-info btn-md" role="button">Modifier</a>
+                            <a href="{{ path('structure_del', { 'id': structure.idstruct }) }}" class="btn btn-danger btn-md" role="button">Supprimer</a>
+                   
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('structure_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+            <a href="{{ path('structure_new') }}" class="btn btn-success btn-md" >Nouveau</a>
+            <script>
+        function myFunction() {
+            var x;
+            if (confirm("Press a button!") == true) {
+                x = "You pressed OK!";
+            } else {
+                x = "You pressed Cancel!";
+            }
+            document.getElementById("demo").innerHTML = x;
+        }
+    </script>  
 {% endblock %}

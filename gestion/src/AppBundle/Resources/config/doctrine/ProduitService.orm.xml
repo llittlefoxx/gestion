@@ -15,6 +15,16 @@
       </options>
     </field>
     <field name="fournit" type="boolean" column="Fournit" nullable="true"/>
+    <field name="libelle" type="string" column="libelle" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="codeunite" target-entity="Unite" fetch="LAZY">
+      <join-columns>
+        <join-column name="codeUnite" referenced-column-name="idunite"/>
+      </join-columns>
+    </many-to-one>
     <many-to-one field="idfournisseur" target-entity="Fournisseur" fetch="LAZY">
       <join-columns>
         <join-column name="idfournisseur" referenced-column-name="idfournisseur"/>
@@ -23,11 +33,6 @@
     <many-to-one field="idnature" target-entity="Natureproduit" fetch="LAZY">
       <join-columns>
         <join-column name="idnature" referenced-column-name="idnature"/>
-      </join-columns>
-    </many-to-one>
-    <many-to-one field="codeunite" target-entity="Unite" fetch="LAZY">
-      <join-columns>
-        <join-column name="codeUnite" referenced-column-name="idunite"/>
       </join-columns>
     </many-to-one>
   </entity>

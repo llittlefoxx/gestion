@@ -2,12 +2,12 @@
 
 namespace AppBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Entity\Structure;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use AppBundle\Entity\Structure;
-use AppBundle\Form\StructureType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Structure controller.
@@ -127,7 +127,7 @@ class StructureController extends Controller
      *
      * @param Structure $structure The Structure entity
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return Form The form
      */
     private function createDeleteForm(Structure $structure)
     {
@@ -136,5 +136,32 @@ class StructureController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+      /**
+     * Deletes a contact entity.
+     *
+     * @Route("/{id}/e", name="structure_del")
+     * @Method({"GET", "POST"})
+     */
+        public function delAction($id) {
+
+       $struct = new Structure();
+        $em = $this->getDoctrine()->getManager();
+        $struct = $em->getRepository('AppBundle:Structure')->find($id);
+     
+        if ($em->remove($struct)){
+            echo "1";
+            
+        }
+        //commit
+        $em->flush();
+        //refresh
+        $structs = $em->getRepository('AppBundle:Structure')->findAll();
+
+
+        return $this->render('structure/index.html.twig', array(
+                    'structures' => $structs,
+                    
+        ));
     }
 }

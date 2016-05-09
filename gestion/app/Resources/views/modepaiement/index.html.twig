@@ -19,7 +19,8 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Libelle</th>
+                <th>Mode de paiement</th>
+                <th>Banque</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -27,7 +28,7 @@
         {% for modepaiement in modepaiements %}
             <tr>
                 <td><a href="{{ path('modepaiement_show', { 'id': modepaiement.idpaiement }) }}">{{ modepaiement.libelle }}</a></td>
-              
+                <td>{{modepaiement.idbanque}} </td>
                 <td>
               
                             <a href="{{ path('modepaiement_show', { 'id': modepaiement.idpaiement }) }}"  class="btn btn-warning btn-md" role="button">Afficher</a>

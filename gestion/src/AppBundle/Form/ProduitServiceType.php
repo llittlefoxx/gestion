@@ -15,11 +15,12 @@ class ProduitServiceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('libelle')
             ->add('description')
             ->add('fournit')
+            ->add('codeunite')
             ->add('idfournisseur')
             ->add('idnature')
-            ->add('codeunite')
         ;
     }
     

@@ -1,9 +1,15 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'client.html.twig' %}
+{% block stylesheets %}
+    {{parent()}}
+    {% endblock %}
+    
 {% block body %}
-    <h1>Comptebancaire</h1>
+    
+        
+  {% block coname %}    {{parent()}}  Compte : {{ comptebancaire.proprietaire }} {% endblock %}
+{{parent()}}
 
-    <table>
+    <table class="table table-striped">
         <tbody>
             <tr>
                 <th>Numrib</th>
@@ -17,24 +23,14 @@
                 <th>Proprietaire</th>
                 <td>{{ comptebancaire.proprietaire }}</td>
             </tr>
-            <tr>
-                <th>Idcompte</th>
-                <td>{{ comptebancaire.idcompte }}</td>
-            </tr>
+
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('comptebancaire_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('comptebancaire_edit', { 'id': comptebancaire.idcompte }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+            <a href="{{ path('comptebancaire_index') }}"  class="btn btn-warning"  >Revenir a la list</a>
+            <a href="{{ path('comptebancaire_edit', { 'id': comptebancaire.idcompte }) }}"  class="btn btn-info btn-md" >Modifier</a>
+            <a href="{{ path('comptebancaire_del', { 'id': comptebancaire.idcompte }) }}" class="btn btn-danger btn-md" >Supprimer</a>
+ 
+      
+
 {% endblock %}
