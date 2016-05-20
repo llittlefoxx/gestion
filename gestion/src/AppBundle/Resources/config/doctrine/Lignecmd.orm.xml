@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Lignecmd" table="lignecmd">
+    <indexes>
+      <index name="idcmd" columns="idcmd"/>
+      <index name="idprod" columns="idprod"/>
+    </indexes>
+    <id name="idligne" type="integer" column="idligne">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="qte" type="integer" column="qte" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-one field="idprod" target-entity="ProduitService" fetch="LAZY">
+      <join-columns>
+        <join-column name="idprod" referenced-column-name="idprod"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idcmd" target-entity="Commande" fetch="LAZY">
+      <join-columns>
+        <join-column name="idcmd" referenced-column-name="idcmd"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

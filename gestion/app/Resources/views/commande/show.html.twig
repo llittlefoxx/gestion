@@ -6,36 +6,12 @@
     <table>
         <tbody>
             <tr>
-                <th>Codetype</th>
-                <td>{{ commande.codetype }}</td>
+                <th>Total</th>
+                <td>{{ commande.total }}</td>
             </tr>
             <tr>
-                <th>Observation</th>
-                <td>{{ commande.observation }}</td>
-            </tr>
-            <tr>
-                <th>Datecommande</th>
-                <td>{% if commande.datecommande %}{{ commande.datecommande|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Idligne</th>
-                <td>{{ commande.idligne }}</td>
-            </tr>
-            <tr>
-                <th>Qte</th>
-                <td>{{ commande.qte }}</td>
-            </tr>
-            <tr>
-                <th>Idlignedecmd</th>
-                <td>{{ commande.idlignedecmd }}</td>
-            </tr>
-            <tr>
-                <th>Quantitecommande</th>
-                <td>{{ commande.quantitecommande }}</td>
-            </tr>
-            <tr>
-                <th>Quantitebci</th>
-                <td>{{ commande.quantitebci }}</td>
+                <th>Date</th>
+                <td>{% if commande.date %}{{ commande.date|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Idcmd</th>

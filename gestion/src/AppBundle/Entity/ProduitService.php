@@ -1,7 +1,7 @@
 <?php
 
 namespace AppBundle\Entity;
-
+use Doctrine\ORM\Mapping as ORM;
 /**
  * ProduitService
  */
@@ -41,7 +41,12 @@ class ProduitService
      * @var \AppBundle\Entity\Natureproduit
      */
     private $idnature;
-
+    
+     /**
+    * @ORM\ManyToOne(targetEntity="Commande")
+    * @ORM\JoinColumn(nullable=false)
+    */
+    private $commande;
 
     /**
      * Set description
@@ -196,5 +201,18 @@ class ProduitService
     {
         return $this->idnature;
     }
+    
+    public function __toString() {
+       return $this->libelle; 
+    }
+   public function getCommande() {
+        return $this->commande;
+    }
+
+    public function setCommande($commande) {
+        $this->commande = $commande;
+    }
+
+
 }
 

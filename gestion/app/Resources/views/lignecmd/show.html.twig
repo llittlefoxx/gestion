@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Lignecmd</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Qte</th>
+                <td>{{ lignecmd.qte }}</td>
+            </tr>
+            <tr>
+                <th>Idligne</th>
+                <td>{{ lignecmd.idligne }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('lignecmd_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('lignecmd_edit', { 'id': lignecmd.idligne }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

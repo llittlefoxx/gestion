@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Lignecmd list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Qte</th>
+                <th>Idligne</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lignecmd in lignecmds %}
+            <tr>
+                <td><a href="{{ path('lignecmd_show', { 'id': lignecmd.idligne }) }}">{{ lignecmd.qte }}</a></td>
+                <td>{{ lignecmd.idligne }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('lignecmd_show', { 'id': lignecmd.idligne }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('lignecmd_edit', { 'id': lignecmd.idligne }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('lignecmd_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

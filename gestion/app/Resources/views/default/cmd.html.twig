@@ -1,0 +1,88 @@
+
+{% extends 'client.html.twig' %}
+{% block stylesheets %}
+    {{parent()}}
+{% endblock %}
+
+{% block body %}
+
+
+    {% block coname %}    {{parent()}}  Commande  numero {{x}} {% endblock %}
+    {{parent()}}
+
+    <div>
+        <label style="color: black;" >Rechercher un produit </label>
+
+        <input id="searchInput" />
+        <br>
+
+        <input id="qte1" type="number" value="0"/>
+    </div>
+    <table class="table table-bordered">
+
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Fournit</th>
+                <th>Libelle</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for produitService in produitServices %}
+                <tr>
+                    <td><a href="{{ path('produitservice_show', { 'id': produitService.idprod }) }}">{{ produitService.description }}</a></td>
+                    <td>{% if produitService.fournit %}Yes{% else %}No{% endif %}</td>
+                    <td>{{ produitService.libelle }}</td>
+
+                    <td>
+                        <a onclick="getQte()" class="btn btn-success btn-md" >Ajouter a la commande</a>
+
+                        <a href="{{ path('produitservice_show', { 'id': produitService.idprod }) }}"  class="btn btn-warning btn-md" >Afficher</a>
+
+                    </td>
+                </tr>
+                </form>
+            <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+            <script>
+                
+                function myFunction() {
+                    var x;
+                    if (confirm("Press a button!") === true) {
+                        x = "You pressed OK!";
+                    } else {
+                        x = "You pressed Cancel!";
+                    }
+                    document.getElementById("demo").innerHTML = x;
+                }
+
+                function getQte() {
+                    var qte=1;
+                    
+                  
+                    var name = prompt("Please enter qtantity", "1");
+                    if (name != null) {
+                        qte = name;
+                       
+                        f=Routing.generate('lc', { 'x': {{x}} , 'idp': {{produitService.idprod}}, 'qte': qte });
+                    alert(f);
+                         window.location=f;
+}
+                      
+                    //  qtee=document.getElementById('qte1').value;
+
+
+                }
+            </script>  
+        {% endfor %}
+    </tbody>
+</table>
+<label style="color: black" >Total Commande :  </label>
+<input id="total"/>
+<a href="" class="btn btn-primary btn-md" >Calculer</a>
+
+
+
+{% endblock %}

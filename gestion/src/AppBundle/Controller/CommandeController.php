@@ -50,7 +50,7 @@ class CommandeController extends Controller
             $em->persist($commande);
             $em->flush();
 
-            return $this->redirectToRoute('commande_show', array('id' => $commande->getIdcompte()));
+            return $this->redirectToRoute('commande_show', array('id' => $commande->getIdcmd()));
         }
 
         return $this->render('commande/new.html.twig', array(
@@ -92,7 +92,7 @@ class CommandeController extends Controller
             $em->persist($commande);
             $em->flush();
 
-            return $this->redirectToRoute('commande_edit', array('id' => $commande->getIdcompte()));
+            return $this->redirectToRoute('commande_edit', array('id' => $commande->getIdcmd()));
         }
 
         return $this->render('commande/edit.html.twig', array(
@@ -132,7 +132,7 @@ class CommandeController extends Controller
     private function createDeleteForm(Commande $commande)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('commande_delete', array('id' => $commande->getIdcompte())))
+            ->setAction($this->generateUrl('commande_delete', array('id' => $commande->getIdcmd())))
             ->setMethod('DELETE')
             ->getForm()
         ;

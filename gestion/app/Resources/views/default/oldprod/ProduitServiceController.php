@@ -137,4 +137,32 @@ class ProduitServiceController extends Controller
             ->getForm()
         ;
     }
+    
+    /**
+     * Deletes a contact entity.
+     *
+     * @Route("/{id}/e", name="produitservice_del")
+     * @Method({"GET", "POST"})
+     */
+        public function delAction($id) {
+
+        $produit = new ProduitService();
+        $em = $this->getDoctrine()->getManager();
+        $produit = $em->getRepository('AppBundle:ProduitService')->find($id);
+     
+        if ($em->remove($produit)){
+            echo "1";
+            
+        }
+        //commit
+        $em->flush();
+        //refresh
+        $produits = $em->getRepository('AppBundle:ProduitService')->findAll();
+
+
+        return $this->render('produitservice/index.html.twig', array(
+                    'produitServices' => $produits,
+                    
+        ));
+    }
 }
